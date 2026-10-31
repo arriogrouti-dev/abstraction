@@ -1,0 +1,19 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Tests (gradient check f64 + sur-apprentissage)
+        run: cargo test --release -- --nocapture
+      - name: Débit GEMM, 1 thread
+        run: cargo run --release --example bench
+      - name: Débit GEMM, 4 threads
+        run: cargo run --release --example bench --features threads
+        env:
+          MATMUL_NUM_THREADS: "4"

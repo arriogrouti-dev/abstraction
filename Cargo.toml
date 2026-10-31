@@ -1,0 +1,19 @@
+[package]
+name = "abstraction"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ndarray = "0.16"
+
+[features]
+# f64 par défaut (tests de gradient). `--features f32` pour entraîner plus vite.
+f32 = []
+# GEMM multi-thread (matrixmultiply). Régler MATMUL_NUM_THREADS.
+threads = ["ndarray/matrixmultiply-threading"]
+
+[profile.dev]
+opt-level = 3
+
+[profile.test]
+opt-level = 3

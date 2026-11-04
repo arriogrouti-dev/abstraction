@@ -1,16 +1,13 @@
 [package]
-name = "abstraction"
+name = "compnet"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-ndarray = "0.16"
-
-[features]
-# f64 par défaut (tests de gradient). `--features f32` pour entraîner plus vite.
-f32 = []
-# GEMM multi-thread (matrixmultiply). Régler MATMUL_NUM_THREADS.
-threads = ["ndarray/matrixmultiply-threading"]
+rand = "0.9"
+rand_distr = "0.5"
+serde = { version = "1", features = ["derive"] }
+bincode = "1.3"
 
 [profile.dev]
 opt-level = 3

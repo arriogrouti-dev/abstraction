@@ -12,4 +12,4 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: pytest -q
-      - run: python -m cw.evaluate --n 100
+      - run: python -m cw.evaluate --n 200

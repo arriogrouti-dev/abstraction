@@ -1,0 +1,15 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  m0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10   # borne dure : Actions ne sert ici qu'à tester, pas à entraîner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - run: python -m cw.evaluate --n 100

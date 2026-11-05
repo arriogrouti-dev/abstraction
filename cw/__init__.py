@@ -1,0 +1,1 @@
+"""M0 : banc d'essai de compréhension causale (générateur, oracle, métriques)."""
